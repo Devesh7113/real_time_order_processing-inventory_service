@@ -1,15 +1,16 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '4.0.6'
+	id 'org.springframework.boot' version '3.5.7'
 	id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'com.real-time-order-processing'
 version = '0.0.1-SNAPSHOT'
+description = 'Inventory and helpdesk MCP service'
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(25)
+		languageVersion = JavaLanguageVersion.of(21)
 	}
 }
 
@@ -19,35 +20,23 @@ repositories {
 
 dependencyManagement {
 	imports {
-		mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
-		mavenBom "org.springframework.ai:spring-ai-bom:2.0.0-RC1"
+		mavenBom "org.springframework.ai:spring-ai-bom:1.0.3"
 	}
 }
 
 dependencies {
-
-	implementation 'org.springframework.boot:spring-boot-starter-kafka'
-
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.kafka:spring-kafka'
 	implementation 'org.springframework.ai:spring-ai-starter-mcp-server-webmvc'
 
-	compileOnly 'org.projectlombok:lombok'
-
-	annotationProcessor 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok:1.18.38'
+	annotationProcessor 'org.projectlombok:lombok:1.18.38'
 
 	runtimeOnly 'org.postgresql:postgresql'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-kafka-test'
-
-	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
-
-	testCompileOnly 'org.projectlombok:lombok'
-
-	testAnnotationProcessor 'org.projectlombok:lombok'
-
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
