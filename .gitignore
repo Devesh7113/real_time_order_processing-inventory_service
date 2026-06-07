@@ -47,7 +47,7 @@ logs/
 *.swp
 
 ### Secrets & local config (never commit passwords) ###
-application-local.properties
+src/main/resources/application-local.properties
 application-local.yml
 *.env
 .env
